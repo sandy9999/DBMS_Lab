@@ -1,6 +1,6 @@
 1.
 
-'''create database Company;
+```create database Company;
 use Company;
 create table Employee (
 	Empid int,
@@ -22,21 +22,21 @@ create table Project (
 create table Workson (
 	Empid int references Employee (Empid),
 	Projno int references Project (Projectno)
-);'''
+);```
 
 ** Please make PR to add insert commands here, too lazy to add **
 
-1. '''select * from Employee order by Empname desc;'''
+1. ```select * from Employee order by Empname desc;```
 
-2. '''select * from Project where Projectno = 2;'''
+2. ```select * from Project where Projectno = 2;```
 
-3. '''select * from Employee where Empname like "B%";'''
+3. ```select * from Employee where Empname like "B%";```
 
-4. '''select EmpId from Workson where Projno = 2;'''
+4. ```select EmpId from Workson where Projno = 2;```
 
 2.
 
-'''
+```
 create table Student (
 	Rollno int,
 	Name varchar(255),
@@ -61,11 +61,11 @@ create table StudDep (
 	Rollno int references Student(Rollno),
 	Deptid int references Department(Deptid)	
 );
-'''
+```
 
 1. 
 
-'''
+```
 insert into Student (Rollno, Name, Marks1, Marks2, Marks3, Marks4, Marks5, Marks6 ) values (1, 'Sandhya', 100, 100, 100, 100, 100, 100);
 insert into Student (Rollno, Name, Marks1, Marks2, Marks3, Marks4, Marks5, Marks6 ) values (2, 'Sneha', 99, 100, 100, 100, 99, 100); 
 insert into Student (Rollno, Name, Marks1, Marks2, Marks3, Marks4, Marks5, Marks6 ) values (3, 'Neha', 50, 50, 40, 50, 50, 50); 
@@ -78,21 +78,21 @@ insert into StudDep (Rollno, Deptid) values (1, 1);
 insert into StudDep (Rollno, Deptid) values (2, 1);
 insert into StudDep (Rollno, Deptid) values (3, 2);
 insert into StudDep (Rollno, Deptid) values (3, 2);
-'''
+```
 
-2. '''select Name, Marks1, Marks2, Marks3, Marks4, Marks5, Marks6 from Student s inner join StudDep w on s.Rollno = w.Rollno inner join Department d on d.Deptid = w.Deptid where d.Deptid = 1;'''
+2. ```select Name, Marks1, Marks2, Marks3, Marks4, Marks5, Marks6 from Student s inner join StudDep w on s.Rollno = w.Rollno inner join Department d on d.Deptid = w.Deptid where d.Deptid = 1;```
 
-3. '''select Deptname, HODname  from Student s inner join StudDep w on s.Rollno = w.Rollno inner join Department d on d.Deptid = w.Deptid where s.Rollno = 1;'''
+3. ```select Deptname, HODname  from Student s inner join StudDep w on s.Rollno = w.Rollno inner join Department d on d.Deptid = w.Deptid where s.Rollno = 1;```
 
-4. '''select Name from Student where (Marks1 + Marks2 + Marks3 + Marks4 + Marks5 + Marks6) >= 500;'''
+4. ```select Name from Student where (Marks1 + Marks2 + Marks3 + Marks4 + Marks5 + Marks6) >= 500;```
 
-5. '''select HODname from Department where Deptname = 'CSE';'''
+5. ```select HODname from Department where Deptname = 'CSE';```
 
-6. '''select s.Rollno from Student s inner join StudDep sd on s.Rollno = sd.Rollno inner join Department d on sd.Deptid = d.Deptid where Deptname = 'CSE';'''
+6. ```select s.Rollno from Student s inner join StudDep sd on s.Rollno = sd.Rollno inner join Department d on sd.Deptid = d.Deptid where Deptname = 'CSE';```
 
 3.
 
-'''
+```
 create database Sales;
 use Sales;
 create table salesperson (
@@ -135,19 +135,19 @@ insert into salerep_expense(expense_type, amount, trip_id) values ('FOOD', 100.0
 insert into salerep_expense(expense_type, amount, trip_id) values ('TRAVEL', 1000.00, 2);
 insert into salerep_expense(expense_type, amount, trip_id) values ('TRAVEL', 2000.00, 3);
 insert into salerep_expense(expense_type, amount, trip_id) values ('FOOD', 1000.00, 3);
-'''
+```
 
-1. '''select trip.ssn, trip.from_city, trip.to_city, trip.departure_date, trip.return_date from trip inner join salerep_expense on trip.trip_id = salerep_expense.trip_id where (select sum(amount)) >=2000;'''
+1. ```select trip.ssn, trip.from_city, trip.to_city, trip.departure_date, trip.return_date from trip inner join salerep_expense on trip.trip_id = salerep_expense.trip_id where (select sum(amount)) >=2000;```
 
-2. '''select ssn from trip where to_city = 'Chennai'  group by ssn having count(to_city) >=2;'''
+2. ```select ssn from trip where to_city = 'Chennai'  group by ssn having count(to_city) >=2;```
 
-3. '''select sum(salerep_expense.amount) from trip inner join salerep_expense on trip.trip_id = salerep_expense.trip_id where ssn = 1000;'''
+3. ```select sum(salerep_expense.amount) from trip inner join salerep_expense on trip.trip_id = salerep_expense.trip_id where ssn = 1000;```
 
-4. '''select name from salesperson order by name asc;'''
+4. ```select name from salesperson order by name asc;```
 
 4.
 
-'''
+```
 create table car (
 	serial_no int,
 	model varchar(255),
@@ -207,12 +207,12 @@ insert into sales values(3, 5, "2018-05-08", 40050000);
 insert into sales values(4, 9, "2018-05-08", 25050000);
 insert into sales values(5, 2, "2018-05-08", 31050000);
 insert into sales values(6, 8, "2018-05-08", 29050000);
-'''
+```
 
-1. '''select name, sa.serial_no, sales_price, price from salesperson s inner join sales sa on s.salesperson_id = sa.salesperson_id inner join car c on sa.serial_no = c.serial_no where name = "John";'''
+1. ```select name, sa.serial_no, sales_price, price from salesperson s inner join sales sa on s.salesperson_id = sa.salesperson_id inner join car c on sa.serial_no = c.serial_no where name = "John";```
 
-2. '''select car.serial_no, car.model from car LEFT JOIN options on car.serial_no = options.serial_no where options.option_name is NULL;'''
+2. ```select car.serial_no, car.model from car LEFT JOIN options on car.serial_no = options.serial_no where options.option_name is NULL;```
 
-3. '''select distinct(c.serial_no), c.model, sales_price from car c inner join sales s on c.serial_no = s.serial_no inner join options o on c.serial_no = o.serial_no;'''
+3. ```select distinct(c.serial_no), c.model, sales_price from car c inner join sales s on c.serial_no = s.serial_no inner join options o on c.serial_no = o.serial_no;```
 
-4. '''update salesperson set phone_no = 9998999799 where name = "Ram";'''
+4. ```update salesperson set phone_no = 9998999799 where name = "Ram";```
